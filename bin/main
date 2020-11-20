@@ -1,2 +1,59 @@
 #!/usr/bin/env ruby
-puts 'Hello World!'
+
+puts 'Welcome to the Tic Tac Toe Game!'
+
+gameover = false
+play = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+first_d = nil
+second_d = nil
+i = 0
+
+
+until gameover
+  puts '   1 2 3 '
+  puts '  -------'
+  puts "a |#{play[0][0]}|#{play[0][1]}|#{play[0][2]}|"
+  puts '  -------'
+  puts "b |#{play[1][0]}|#{play[1][1]}|#{play[1][2]}|"
+  puts '  -------'
+  puts "c |#{play[2][0]}|#{play[2][1]}|#{play[2][2]}|"
+  puts '  -------'
+  puts
+  if i != 9   
+    puts 'Note: Game is over when all squares are filled.'
+    puts 'Please enter square code to play your move. (For e.g. a1)'
+    input = gets.chomp
+  end
+  if input.include?('a')
+    first_d = 0
+  elsif input.include?('b')
+    first_d = 1
+  elsif input.include?('c')
+    first_d = 2
+  else
+     first_d = nil
+  end
+  if input.include?('1')
+    second_d = 0
+  elsif input.include?('2')
+    second_d = 1
+  elsif input.include?('3')
+    second_d = 2
+  else
+    second_d = nil
+
+  end
+  if !first_d.nil? && !second_d.nil?
+    play[first_d][second_d] = 'x'
+    puts
+     gameover = true if i == 9
+    i += 1
+  else
+    puts "Error, please try again"
+  end
+end
+
+
+
+
+
