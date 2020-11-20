@@ -33,11 +33,11 @@ until gameover
               2
             end
 
-  second_d = if input.include?('a')
+  second_d = if input.include?('1')
                0
-             elsif input.include?('b')
+             elsif input.include?('2')
                1
-             elsif input.include?('c')
+             elsif input.include?('3')
                2
              end
 
