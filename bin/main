@@ -4,11 +4,12 @@ puts 'Welcome to the Tic Tac Toe Game!'
 
 gameover = false
 play = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
-first_d = nil
-second_d = nil
+
 i = 0
 
 until gameover
+  first_d = nil
+  second_d = nil
   puts '   1 2 3 '
   puts '  -------'
   puts "a |#{play[0][0]}|#{play[0][1]}|#{play[0][2]}|"
@@ -24,26 +25,22 @@ until gameover
     input = gets.chomp
   end
 
-  if input.include?('a')
-    first_d = 0
-  elsif input.include?('b')
-    first_d = 1
-  elsif input.include?('c')
-    first_d = 2
-  else
-    first_d = nil
-  end
+  first_d = if input.include?('a')
+              0
+            elsif input.include?('b')
+              1
+            elsif input.include?('c')
+              2
+            end
 
-  if input.include?('1')
-    second_d = 0
-  elsif input.include?('2')
-    second_d = 1
-  elsif input.include?('3')
-    second_d = 2
-  else
-    second_d = nil
+  second_d = if input.include?('a')
+               0
+             elsif input.include?('b')
+               1
+             elsif input.include?('c')
+               2
+             end
 
-  end
   if !first_d.nil? && !second_d.nil?
     play[first_d][second_d] = 'x'
     puts
