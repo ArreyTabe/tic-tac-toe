@@ -8,7 +8,6 @@ first_d = nil
 second_d = nil
 i = 0
 
-
 until gameover
   puts '   1 2 3 '
   puts '  -------'
@@ -19,11 +18,12 @@ until gameover
   puts "c |#{play[2][0]}|#{play[2][1]}|#{play[2][2]}|"
   puts '  -------'
   puts
-  if i != 9   
+  if i != 9
     puts 'Note: Game is over when all squares are filled.'
     puts 'Please enter square code to play your move. (For e.g. a1)'
     input = gets.chomp
   end
+
   if input.include?('a')
     first_d = 0
   elsif input.include?('b')
@@ -31,8 +31,9 @@ until gameover
   elsif input.include?('c')
     first_d = 2
   else
-     first_d = nil
+    first_d = nil
   end
+
   if input.include?('1')
     second_d = 0
   elsif input.include?('2')
@@ -46,14 +47,9 @@ until gameover
   if !first_d.nil? && !second_d.nil?
     play[first_d][second_d] = 'x'
     puts
-     gameover = true if i == 9
+    gameover = true if i == 9
     i += 1
   else
-    puts "Error, please try again"
+    puts 'Error, please try again'
   end
 end
-
-
-
-
-
