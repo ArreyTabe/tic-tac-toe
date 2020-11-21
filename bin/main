@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# rubocop:disable Metrics/BlockNesting
 
 puts 'Welcome to the Tic Tac Toe Game!'
 
@@ -15,18 +16,6 @@ i = 0
 end
 
 i = 0
-
-def playgame(f_d, s_d)
-  if play[f_d][s_d] != 'x' && play[f_d][s_d] != 'o'
-    play[f_d][s_d] = i.even? ? 'x' : 'o'
-    puts
-    gameover = true if i == 9
-    i += 1
-  else
-    puts 'This square is already filled! Please try again!'
-    puts
-  end
-end
 
 until gameover
   first_d = nil
@@ -65,7 +54,15 @@ until gameover
                end
 
     if !first_d.nil? && !second_d.nil?
-      playgame(first_d, second_d, i)
+      if play[first_d][second_d] != 'x' && play[first_d][second_d] != 'o'
+        play[first_d][second_d] = i.even? ? 'x' : 'o'
+        puts
+        gameover = true if i == 9
+        i += 1
+      else
+        puts 'This square is already filled! Please try again!'
+        puts
+      end
     else
       puts 'Wrong value entered! Please try again!'
       puts
@@ -75,3 +72,5 @@ until gameover
     puts
   end
 end
+
+# rubocop:enable Metrics/BlockNesting
