@@ -16,6 +16,18 @@ end
 
 i = 0
 
+def playgame(f_d, s_d)
+  if play[f_d][s_d] != 'x' && play[f_d][s_d] != 'o'
+    play[f_d][s_d] = i.even? ? 'x' : 'o'
+    puts
+    gameover = true if i == 9
+    i += 1
+  else
+    puts 'This square is already filled! Please try again!'
+    puts
+  end
+end
+
 until gameover
   first_d = nil
   second_d = nil
@@ -53,15 +65,7 @@ until gameover
                end
 
     if !first_d.nil? && !second_d.nil?
-      if play[first_d][second_d] != 'x' && play[first_d][second_d] != 'o'
-        play[first_d][second_d] = i.even? ? 'x' : 'o'
-        puts
-        gameover = true if i == 9
-        i += 1
-      else
-        puts 'This square is already filled! Please try again!'
-        puts
-      end
+      playgame(first_d, second_d, i)
     else
       puts 'Wrong value entered! Please try again!'
       puts
