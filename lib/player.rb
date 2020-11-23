@@ -5,11 +5,11 @@ class Player
     @symbol = symbol
   end
 
-  def fetch_name
+  def get_name
     @name
   end
 
-  def fetch_symbol
+  def get_symbol
     @symbol
   end
 end

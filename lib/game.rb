@@ -9,19 +9,19 @@ class Game
     @move_num = 1
   end
 
-  def fetch_gameover
+  def get_gameover
     @gameover
   end
 
-  def fetch_move_num
+  def get_move_num
     @move_num
   end
 
-  def update_first_d=(new_d)
+  def set_first_d=(new_d)
     @first_d = new_d
   end
 
-  def update_second_d=(new_d)
+  def set_second_d=(new_d)
     @second_d = new_d
   end
 
@@ -78,7 +78,7 @@ class Game
   end
 
   def play_move
-    symbol = @current_player.fetch_symbol
+    symbol = @current_player.get_symbol
     @play[@first_d][@second_d] = symbol
     @move_num += 1
     game_won if winning_possibilities.any? do |item|
@@ -90,7 +90,7 @@ class Game
   def game_won
     game_over
     print_game
-    puts "#{@current_player.fetch_name} has won the game!"
+    puts "#{@current_player.get_name} has won the game!"
   end
 
   def game_over

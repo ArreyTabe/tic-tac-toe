@@ -16,15 +16,15 @@ class Main
   name = gets.chomp
   player2 = Player.new(name, 'o')
 
-  until game.fetch_gameover
-    game.update_first_d = nil
-    game.update_second_d = nil
+  until game.get_gameover
+    game.set_first_d = nil
+    game.set_second_d = nil
     game.print_game
 
-    if game.fetch_move_num < 10
-      current_player = game.fetch_move_num.odd? ? player1 : player2
+    if game.get_move_num < 10
+      current_player = game.get_move_num.odd? ? player1 : player2
       puts 'Note: Game is over when all squares are filled.'
-      puts "Round for Player #{current_player.fetch_name}"
+      puts "Round for Player #{current_player.get_name}"
       puts 'Please enter square code to play your move. (For e.g. a1)'
       input = gets.chomp
       game.check_valid_input(input, current_player)
