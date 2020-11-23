@@ -1,76 +1,137 @@
 #!/usr/bin/env ruby
-# rubocop:disable Metrics/BlockNesting
 
-puts 'Welcome to the Tic Tac Toe Game!'
-
-gameover = false
-play = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
-players = []
-
-i = 0
-
-2.times do
-  puts "Please enter the name of Player #{i + 1}."
-  players.push(gets.chomp)
-  i += 1
-end
-
-i = 0
-
-until gameover
-  first_d = nil
-  second_d = nil
-  puts '   1 2 3 '
-  puts '  -------'
-  puts "a |#{play[0][0]}|#{play[0][1]}|#{play[0][2]}|"
-  puts '  -------'
-  puts "b |#{play[1][0]}|#{play[1][1]}|#{play[1][2]}|"
-  puts '  -------'
-  puts "c |#{play[2][0]}|#{play[2][1]}|#{play[2][2]}|"
-  puts '  -------'
-  puts
-  if i != 9
-    puts 'Note: Game is over when all squares are filled.'
-    puts "Round for Player #{players[i % 2]}"
-    puts 'Please enter square code to play your move. (For e.g. a1)'
-    input = gets.chomp
+# The class for the game
+class Game
+  def initialize
+    @play = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+    @gameover = false
+    @first_d = nil
+    @second_d = nil
+    @move_num = 1
   end
 
-  if input.length == 2
-    first_d = if input.include?('a')
-                0
-              elsif input.include?('b')
-                1
-              elsif input.include?('c')
-                2
-              end
+  def fetch_gameover
+    @gameover
+  end
 
-    second_d = if input.include?('1')
-                 0
-               elsif input.include?('2')
-                 1
-               elsif input.include?('3')
-                 2
-               end
+  def fetch_move_num
+    @move_num
+  end
 
-    if !first_d.nil? && !second_d.nil?
-      if play[first_d][second_d] != 'x' && play[first_d][second_d] != 'o'
-        play[first_d][second_d] = i.even? ? 'x' : 'o'
-        puts
-        gameover = true if i == 9
-        i += 1
-      else
-        puts 'This square is already filled! Please try again!'
-        puts
-      end
+  def get_play(first_d, second_d)
+    @play[first_d][second_d]
+  end
+
+  def update_first_d=(new_d)
+    @first_d = new_d
+  end
+
+  def update_second_d=(new_d)
+    @second_d = new_d
+  end
+
+  def check_valid_input(input, symbol)
+    if input.length == 2
+      update_d(input, symbol)
     else
       puts 'Wrong value entered! Please try again!'
       puts
     end
-  else
-    puts 'Wrong value entered! Please try again!'
-    puts
+  end
+
+  def update_d(input, symbol)
+    @first_d = if input.include?('a')
+                 0
+               elsif input.include?('b')
+                 1
+               elsif input.include?('c')
+                 2
+               end
+
+    @second_d = if input.include?('1')
+                  0
+                elsif input.include?('2')
+                  1
+                elsif input.include?('3')
+                  2
+                end
+    check_valid_move(symbol)
+  end
+
+  def check_valid_move(symbol)
+    if @play[@first_d][@second_d] != 'x' && @play[@first_d][@second_d] != 'o'
+      play_move(symbol)
+    else
+      puts 'This square is already filled! Please try again!'
+      puts
+    end
+  end
+
+  def play_move(symbol)
+    @play[@first_d][@second_d] = symbol
+    @move_num += 1
+  end
+
+  def game_won(name)
+    game_over
+    puts "#{name} has won the game!"
+  end
+
+  def game_over
+    @gameover = true
+    puts 'Game Over!'
   end
 end
 
-# rubocop:enable Metrics/BlockNesting
+# The class for the player
+class Player
+  def initialize(name, symbol)
+    @name = name
+    @symbol = symbol
+  end
+
+  def fetch_name
+    @name
+  end
+
+  def fetch_symbol
+    @symbol
+  end
+end
+
+game = Game.new
+
+puts 'Welcome to the Tic Tac Toe Game!'
+
+puts 'Please enter the name of Player 1.'
+name = gets.chomp
+player1 = Player.new(name, 'x')
+
+puts 'Please enter the name of Player 2.'
+name = gets.chomp
+player2 = Player.new(name, 'o')
+
+until game.fetch_gameover
+  game.update_first_d = (nil)
+  game.update_second_d = (nil)
+  puts '   1 2 3 '
+  puts '  -------'
+  puts "a |#{game.get_play(0, 0)}|#{game.get_play(0, 1)}|#{game.get_play(0, 2)}|"
+  puts '  -------'
+  puts "b |#{game.get_play(1, 0)}|#{game.get_play(1, 1)}|#{game.get_play(1, 2)}|"
+  puts '  -------'
+  puts "c |#{game.get_play(2, 0)}|#{game.get_play(2, 1)}|#{game.get_play(2, 2)}|"
+  puts '  -------'
+  puts
+
+  if game.fetch_move_num != 9
+    current_player = game.fetch_move_num.odd? ? player1 : player2
+    puts 'Note: Game is over when all squares are filled.'
+    puts "Round for Player #{current_player.fetch_name}"
+    puts 'Please enter square code to play your move. (For e.g. a1)'
+    input = gets.chomp
+    game.check_valid_input(input, current_player.fetch_symbol)
+  else
+    game.game_over
+  end
+end
