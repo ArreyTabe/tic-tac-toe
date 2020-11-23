@@ -36,11 +36,11 @@ class Game
   end
 
   def update_d(input)
-    moves_first_d = %w[a b c]
-    moves_second_d = %w[1 2 3]
+    table_rows = %w[a b c]
+    table_columns = %w[1 2 3]
 
-    moves_first_d.each_with_index { |item, i| @first_d = i if input.include?(item) }
-    moves_second_d.each_with_index { |item, i| @second_d = i if input.include?(item) }
+    table_rows.each_with_index { |item, i| @first_d = i if input.include?(item) }
+    table_columns.each_with_index { |item, i| @second_d = i if input.include?(item) }
 
     check_valid_move
   end
