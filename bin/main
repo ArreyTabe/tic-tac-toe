@@ -6,12 +6,9 @@ require_relative '../lib/player'
 
 # class for main
 class Main
-  # include Game
-  # include Player
   game = Game.new
 
   puts 'Welcome to the Tic Tac Toe Game!'
-
   puts 'Please enter the name of Player 1.'
   name = gets.chomp
   player1 = Player.new(name, 'x')
@@ -23,17 +20,9 @@ class Main
   until game.fetch_gameover
     game.update_first_d = (nil)
     game.update_second_d = (nil)
-    puts '   1 2 3 '
-    puts '  -------'
-    puts "a |#{game.get_play(0, 0)}|#{game.get_play(0, 1)}|#{game.get_play(0, 2)}|"
-    puts '  -------'
-    puts "b |#{game.get_play(1, 0)}|#{game.get_play(1, 1)}|#{game.get_play(1, 2)}|"
-    puts '  -------'
-    puts "c |#{game.get_play(2, 0)}|#{game.get_play(2, 1)}|#{game.get_play(2, 2)}|"
-    puts '  -------'
-    puts
+    game.print_game
 
-    if game.fetch_move_num != 9
+    if game.fetch_move_num < 10
       current_player = game.fetch_move_num.odd? ? player1 : player2
       puts 'Note: Game is over when all squares are filled.'
       puts "Round for Player #{current_player.fetch_name}"
