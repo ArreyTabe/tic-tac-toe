@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # The class for the game
 class Game
   def initialize
@@ -68,18 +66,25 @@ class Game
     end
   end
 
+  def winning_possibilities
+    [[@play[0][0], @play[0][1], @play[0][2]],
+     [@play[1][0], @play[1][1], @play[1][2]],
+     [@play[2][0], @play[2][1], @play[2][2]],
+     [@play[0][0], @play[1][0], @play[2][0]],
+     [@play[0][1], @play[1][1], @play[2][1]],
+     [@play[0][2], @play[1][2], @play[2][2]],
+     [@play[0][0], @play[1][1], @play[2][2]],
+     [@play[0][2], @play[1][1], @play[2][0]]]
+  end
+
   def play_move
-    @play[@first_d][@second_d] = @current_player.fetch_symbol
+    symbol = @current_player.fetch_symbol
+    @play[@first_d][@second_d] = symbol
     @move_num += 1
-    winning_possibilities = [[@current_player.fetch_symbol, @play[0][0], @play[0][1], @play[0][2]].uniq.length == 1,
-                             [@current_player.fetch_symbol, @play[1][0], @play[1][1], @play[1][2]].uniq.length == 1,
-                             [@current_player.fetch_symbol, @play[2][0], @play[2][1], @play[2][2]].uniq.length == 1,
-                             [@current_player.fetch_symbol, @play[0][0], @play[1][0], @play[2][0]].uniq.length == 1,
-                             [@current_player.fetch_symbol, @play[0][1], @play[1][1], @play[2][1]].uniq.length == 1,
-                             [@current_player.fetch_symbol, @play[0][2], @play[1][2], @play[2][2]].uniq.length == 1,
-                             [@current_player.fetch_symbol, @play[0][0], @play[1][1], @play[2][2]].uniq.length == 1,
-                             [@current_player.fetch_symbol, @play[0][2], @play[1][1], @play[2][0]].uniq.length == 1]
-    game_won if winning_possibilities.any?
+    game_won if winning_possibilities.any? do |item|
+      item.push(symbol)
+      item.uniq.length == 1
+    end
   end
 
   def game_won

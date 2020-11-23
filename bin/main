@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: true
 
 require_relative '../lib/game'
 require_relative '../lib/player'
@@ -18,8 +17,8 @@ class Main
   player2 = Player.new(name, 'o')
 
   until game.fetch_gameover
-    game.update_first_d = (nil)
-    game.update_second_d = (nil)
+    game.update_first_d = nil
+    game.update_second_d = nil
     game.print_game
 
     if game.fetch_move_num < 10

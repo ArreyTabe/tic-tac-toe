@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # The class for the player
 class Player
   def initialize(name, symbol)
