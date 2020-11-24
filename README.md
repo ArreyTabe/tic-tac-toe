@@ -24,9 +24,13 @@ The game board is as shown above, a 3x3 grid where each player take a turn and p
 
  The first player to fulfill any of the above conditions is declared **Winner!**
 
+ ![screenshot](asset/winning_grid.png)
+
 ##### Draw
 
 There is a draw (or tie) if all cells are occupied without any player meeting the above conditions
+
+![screenshot](asset/draw_grid.png)
 
 ## Game Conditions
 - A cell can either be empty or owned by a player
