@@ -3,33 +3,65 @@
 require_relative '../lib/game'
 require_relative '../lib/player'
 
-# class for main
-class Main
-  game = Game.new
+game = Game.new
 
-  puts 'Welcome to the Tic Tac Toe Game!'
-  puts 'Please enter the name of Player 1.'
-  name = gets.chomp
-  player1 = Player.new(name, 'x')
+def print_game(play)
+  puts '   1 2 3 '
+  puts '  -------'
+  puts "a |#{play[0][0]}|#{play[0][1]}|#{play[0][2]}|"
+  puts '  -------'
+  puts "b |#{play[1][0]}|#{play[1][1]}|#{play[1][2]}|"
+  puts '  -------'
+  puts "c |#{play[2][0]}|#{play[2][1]}|#{play[2][2]}|"
+  puts '  -------'
+  puts
+end
 
-  puts 'Please enter the name of Player 2.'
-  name = gets.chomp
-  player2 = Player.new(name, 'o')
+def print_message(message)
+  puts message
+  puts
+end
 
-  until game.gameover
-    game.first_d = nil
-    game.second_d = nil
-    game.print_game
+puts 'Welcome to the Tic Tac Toe Game!'
+puts 'Please enter the name of Player 1.'
+name = gets.chomp
+player1 = Player.new(name, 'x')
 
-    if game.move_num < 10
-      current_player = game.move_num.odd? ? player1 : player2
-      puts 'Note: Game is over when all squares are filled.'
-      puts "Round for Player #{current_player.name}"
-      puts 'Please enter square code to play your move. (For e.g. a1)'
-      input = gets.chomp
-      game.check_valid_input(input, current_player)
+puts 'Please enter the name of Player 2.'
+name = gets.chomp
+player2 = Player.new(name, 'o')
+
+until game.gameover
+  game.first_d = nil
+  game.second_d = nil
+  print_game(game.play)
+
+  if game.move_num < 10
+    game.current_player = game.move_num.odd? ? player1 : player2
+    puts 'Note: Game is over when all squares are filled.'
+    puts "Round for Player #{game.current_player.name}"
+    puts 'Please enter square code to play your move. (For e.g. a1)'
+    input = gets.chomp
+    if game.input_valid?(input)
+      game.update_d(input)
+      if game.move_valid?
+        if game.square_filled?
+          game.play_move
+          if game.game_won?
+            game.gameover = true
+            print_game(game.play)
+            print_message "#{game.current_player.name} has won the game!"
+          end
+        else
+          print_message 'This square is already filled! Please try again!'
+        end
+      else
+        print_message 'Wrong value entered! Please try again!'
+      end
     else
-      game.game_over
+      print_message 'Wrong value entered! Please try again!'
     end
+  else
+    game.game_over
   end
 end
