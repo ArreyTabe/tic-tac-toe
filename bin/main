@@ -29,6 +29,7 @@ def game_flow(game, player1, player2)
   print_game(game.play)
   print_initial_message(game, player1, player2)
   input = gets.chomp
+  puts '---------------------------'
   return 'Wrong value entered! Please try again!' unless game.input_valid?(input)
 
   game.update_d(input)
