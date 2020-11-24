@@ -41,12 +41,16 @@ def game_flow(game, player1, player2)
   end
   return game.gameover = true && "Game Over! It's a draw!" if game.move_num > 9
 end
+
 puts 'Welcome to the Tic Tac Toe Game!'
+
 puts 'Please enter the name of Player 1.'
 name = gets.chomp
 player1 = Player.new(name, 'x')
+
 puts 'Please enter the name of Player 2.'
 name = gets.chomp
 player2 = Player.new(name, 'o')
+
 puts game_flow game, player1, player2 until game.gameover
 print_game(game.play)
