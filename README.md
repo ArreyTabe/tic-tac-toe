@@ -4,11 +4,11 @@
 A 3x3 grid game played by two users where each user takes turns in playing the one who gets 3 consecutive cells(boxes) **Wins!** 
 
 ## Game Description
-
+**The grid board is as shown on this shot **
 ![screenshot](asset/tic-tac-toe-grid.png)
 
-The game board is as shown above, a 3x3 grid where each player take a turn and plays.
-
+The game board is as shown above, a 3x3 grid where each player takes a turn and plays.
+**Below is the grid with symbols**
 ![screenshot](asset/grid_with_symbols.png)
 
 - The game starts by prompting both players for their names.
@@ -20,15 +20,18 @@ The game board is as shown above, a 3x3 grid where each player take a turn and p
 1) If a symbol ('x' or 'o') at any given point occupies an entire row (a1:a3, or b1:b3 or c1: c3) 
 2) an entire column (a1:c1 or a2:c2 or a3:c3) 
 3) if the symbol occupies the leading diagonal 
-4)  if the symbol the antidiagonal.
+4)  or if the symbol occupies the antidiagonal.
 
  The first player to fulfill any of the above conditions is declared **Winner!**
+ 
+**See Winning Grid Below**
 
  ![screenshot](asset/winning_grid.png)
 
 ##### Draw
 
-There is a draw (or tie) if all cells are occupied without any player meeting the above conditions
+There is a draw (or tie) if all cells are occupied without any player meeting the above conditions.
+**See draw Grid Below**
 
 ![screenshot](asset/draw_grid.png)
 
@@ -41,10 +44,12 @@ There is a draw (or tie) if all cells are occupied without any player meeting th
 
 
 
-
 ## Project Description
 
+To complete this project, it was separeted milestones:
+**Milestone 1**
+This was the setup milestone where we setup necceesary files for the project.
 
-We were tasked to develop the the tic tac toe game so as to appreciate the power  OOp in Ruby.
+**Milestone 2**
 
-To develop this game, we had four Milestones
+
