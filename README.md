@@ -26,7 +26,7 @@ The game board is as shown above, a 3x3 grid where each player takes a turn and 
  
 **See Winning Grid Below**
 
- ![screenshot](asset/winning_grid.png)
+ ![screenshot](asset/winning_grid.png.png)
 
 ##### Draw
 
