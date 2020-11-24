@@ -14,7 +14,7 @@ A 3x3 grid game played by two users where each user takes turns in playing. The 
 
 ![screenshot](asset/tic-tac-toe-grid.png)
 
-The game board is as shown above, a 3x3 grid where each player takes a turn and plays.
+The game board is, as shown above, a 3x3 grid where each player takes a turn and plays.
 
 - The game starts by prompting both players for their names.
 - We assume player one always starts, then player two
@@ -52,10 +52,10 @@ There is a draw (or tie) if all cells are occupied without any player meeting th
 The project was implemented in the following milestones:
 
 **Milestone 1**
-This was the setup milestone where we setup necceesary files for the project. The milestone was named **setup-feature**
+This was the setup milestone where we set up the necessary files for the project. The milestone was named **setup-feature**
 
 **Milestone 2**
-For this milestone we designed our board, our 3x3 grid and inserted randomly the symbols. The milestone was named  **user_interface-feature**
+For this milestone, we designed our board, our 3x3 grid, and inserted randomly the symbols. The milestone was named  **user_interface-feature**
 
 **Milestone 3**
 This is where the actual implementation takes place, all considerations and assumptions for plays are done here:
@@ -81,7 +81,7 @@ The Gaming instructions were written. The milestone was named **readme_game_inst
 
 ## Contributing
 
-Contributions, issues and feature requests are welcome! Start by:
+Contributions, issues, and feature requests are welcome! Start by:
 
   - Forking the project
   - Cloning the project to your local machine
@@ -89,7 +89,7 @@ Contributions, issues and feature requests are welcome! Start by:
   - Run git checkout -b your-branch-name
   - Make your contributions
   - Push your branch up to your forked repository
-  - Open a Pull Request with a detailed description to the development branch of the original project for a review
+  - Open a Pull Request with a detailed description of the development branch of the original project for a review
 
 
 ## Live Demo
@@ -114,10 +114,9 @@ Contributions, issues and feature requests are welcome! Start by:
 
 ## Show your support
 
-Give a ⭐️ if you like this project!
+Give a  ⭐️ if you like this project!
 
 ## 📝 License
 
 This project is [MIT](https://choosealicense.com/licenses/mit/) licensed.
-
 
