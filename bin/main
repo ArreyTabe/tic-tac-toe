@@ -1,10 +1,7 @@
 #!/usr/bin/env ruby
-
 require_relative '../lib/game'
 require_relative '../lib/player'
-
 game = Game.new
-
 def print_game(play)
   puts '   1 2 3 '
   puts '  -------'
@@ -17,51 +14,39 @@ def print_game(play)
   puts
 end
 
-def print_message(message)
-  puts message
-  puts
+def print_initial_message(game, player1, player2)
+  game.current_player = game.move_num.odd? ? player1 : player2
+  puts 'Note: Game is over when all squares are filled.'
+  puts "Round for Player #{game.current_player.name}"
+  puts 'Please enter square code to play your move. (For e.g. a1)'
 end
 
+def game_flow(game, player1, player2)
+  game.first_d = nil
+  game.second_d = nil
+  print_game(game.play)
+  print_initial_message(game, player1, player2)
+  input = gets.chomp
+  return 'Wrong value entered! Please try again!' unless game.input_valid?(input)
+
+  game.update_d(input)
+  return 'Wrong value entered! Please try again!' unless game.move_valid?
+
+  return 'This square is already filled! Please try again!' unless game.square_filled?
+
+  game.play_move
+  if game.game_won?
+    game.gameover = true
+    return "#{game.current_player.name} has won the game!"
+  end
+  return game.gameover = true && "Game Over! It's a draw!" if game.move_num > 9
+end
 puts 'Welcome to the Tic Tac Toe Game!'
 puts 'Please enter the name of Player 1.'
 name = gets.chomp
 player1 = Player.new(name, 'x')
-
 puts 'Please enter the name of Player 2.'
 name = gets.chomp
 player2 = Player.new(name, 'o')
-
-until game.gameover
-  game.first_d = nil
-  game.second_d = nil
-  print_game(game.play)
-
-  if game.move_num < 10
-    game.current_player = game.move_num.odd? ? player1 : player2
-    puts 'Note: Game is over when all squares are filled.'
-    puts "Round for Player #{game.current_player.name}"
-    puts 'Please enter square code to play your move. (For e.g. a1)'
-    input = gets.chomp
-    if game.input_valid?(input)
-      game.update_d(input)
-      if game.move_valid?
-        if game.square_filled?
-          game.play_move
-          if game.game_won?
-            game.gameover = true
-            print_game(game.play)
-            print_message "#{game.current_player.name} has won the game!"
-          end
-        else
-          print_message 'This square is already filled! Please try again!'
-        end
-      else
-        print_message 'Wrong value entered! Please try again!'
-      end
-    else
-      print_message 'Wrong value entered! Please try again!'
-    end
-  else
-    game.game_over
-  end
-end
+puts game_flow game, player1, player2 until game.gameover
+print_game(game.play)
