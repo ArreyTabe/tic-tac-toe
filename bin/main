@@ -41,10 +41,10 @@ def game_flow(game, player1, player2)
     return "#{game.current_player.name} has won the game!"
   end
 
-  if game.move_num > 9
-    game.gameover = true
-    "Game Over! It's a draw!"
-  end
+  return unless game.move_num > 9
+
+  game.gameover = true
+  "Game Over! It's a draw!"
 end
 
 puts 'Welcome to the Tic Tac Toe Game!'
